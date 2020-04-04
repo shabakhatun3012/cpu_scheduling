@@ -6,7 +6,7 @@
 
  FILE *fp = fopen("cpu_burst.txt", "r");
  
-    int burst_time[20],p[20],wt[20],tat[20],i=0,j,n=5,total=0,pos,temp;
+    int burst_time[20],process[20],waiting_time[20],tat[20],i=0,j,n=5,total=0,pos,temp;
     float avg_wt,avg_tat;  
     
     printf("\nReading CPU_BURST.txt File\n");
@@ -16,8 +16,8 @@
         fscanf(fp, "%d", &burst_time[i]);
         if(burst_time[i]>0)
 		{
-        p[i]=i+1;
-	    i++;
+                 process[i]=i+1;
+	         i++;
 		}         //contains process number
     }
     
@@ -34,19 +34,19 @@
         temp=burst_time[i];
         burst_time[i]=burst_time[pos];
         burst_time[pos]=temp;
-        temp=p[i];
-        p[i]=p[pos];
-        p[pos]=temp;
+        temp=process[i];
+        process[i]=process[pos];
+        process[pos]=temp;
     }
     
-    wt[0]=0;            //waiting time for first process will be zero
+    waiting_time[0]=0;            //waiting time for first process will be zero
 //calculate waiting time
     for(i=1;i<n;i++)
     {
-        wt[i]=0;
+        waiting_time[i]=0;
         for(j=0;j<i;j++)
-            wt[i]+=burst_time[j];
-        total+=wt[i];
+            waiting_time[i]+=burst_time[j];
+        total+=waiting_time[i];
     }
     
     avg_wt=(float)total/n;      //average waiting time
@@ -55,9 +55,9 @@
     printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
     for(i=0;i<n;i++)
     {
-       tat[i]=burst_time[i]+wt[i];     //calculate turnaround time
+       tat[i]=burst_time[i]+waiting_time[i];     //calculate turnaround time
        total+=tat[i];
-       printf("\np%d\t\t  %d\t\t    %d\t\t\t%d",p[i],burst_time[i],wt[i],tat[i]);
+       printf("\np%d\t\t  %d\t\t    %d\t\t\t%d",process[i],burst_time[i],waiting_time[i],tat[i]);
     }
     
    avg_tat=(float)total/n;     //average turnaround time
