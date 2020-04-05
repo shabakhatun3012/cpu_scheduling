@@ -1,7 +1,7 @@
-  #include <stdio.h>
+ #include <stdio.h>
  #include <stdlib.h>
-  #include <string.h>
-  int main()
+ #include <string.h>
+ int main()
 {
 
  FILE *fp = fopen("cpu_burst.txt", "r");
@@ -55,7 +55,7 @@
     printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
     for(i=0;i<n;i++)
     {
-       tat[i]=burst_time[i]+waiting_time[i];     //calculate turnaround time
+       tat[i]=burst_time[i]+waiting_time[i];       //calculate turnaround time
        total+=tat[i];
        printf("\np%d\t\t  %d\t\t    %d\t\t\t%d",process[i],burst_time[i],waiting_time[i],tat[i]);
     }
