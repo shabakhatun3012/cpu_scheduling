@@ -18,7 +18,7 @@
 		{
                  process[i]=i+1;
 	         i++;
-		}         //contains process number
+		}    //contains process number
     }
     
     n=i;
@@ -49,9 +49,8 @@
         total+=waiting_time[i];
     }
     
-    avg_wt=(float)total/n;      //average waiting time
-    
-    total=0;
+    avg_wt=(float)total/n; //average waiting time
+     total=0;
     printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
     for(i=0;i<n;i++)
     {
